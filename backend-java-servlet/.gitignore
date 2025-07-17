@@ -1,0 +1,18 @@
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar pastas de build e IDEs
+/out/
+target/
+.idea/
+*.iml
+
+# Ignorar logs e arquivos temporários
+*.log
+*.tmp
+
+# Ignorar arquivos do Tomcat local
+logs/
+temp/
+work/
