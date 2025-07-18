@@ -1,7 +1,6 @@
 from fastapi import FastAPI
+from app.api import predict
 
 app = FastAPI()
 
-@app.get("/")
-def hello():
-    return {"message": "Hello World"}
+app.include_router(predict.router)
