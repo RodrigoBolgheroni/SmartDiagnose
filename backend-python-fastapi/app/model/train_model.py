@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.metrics import classification_report, confusion_matrix
 from keras.utils import to_categorical
-from keras import Sequential, layers
+from keras import Sequential, layers,regularizers
 from keras.callbacks import EarlyStopping
 import numpy as np
 
@@ -47,8 +47,21 @@ def treinar_modelo(caminho_csv: str, salvar_modelo: bool = True):
     X_train, X_test, y_train, y_test = train_test_split(X_scaled, Y_onehot, test_size=0.2, random_state=42)
 
     model = Sequential([
-        layers.Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
-        layers.Dense(64, activation='relu'),
+        layers.Dense(256, activation='relu', input_shape=(X_train.shape[1],),
+                    kernel_regularizer=regularizers.l2(0.001)),
+        layers.BatchNormalization(),
+        layers.Dropout(0.3),
+
+        layers.Dense(128, activation='relu',
+                    kernel_regularizer=regularizers.l2(0.001)),
+        layers.BatchNormalization(),
+        layers.Dropout(0.3),
+
+        layers.Dense(64, activation='relu',
+                    kernel_regularizer=regularizers.l2(0.001)),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+
         layers.Dense(Y_onehot.shape[1], activation='softmax')
     ])
 
@@ -86,6 +99,11 @@ def treinar_modelo(caminho_csv: str, salvar_modelo: bool = True):
         caminho_encoder = os.path.join(pasta_modelo, 'label_encoder.pkl')
         joblib.dump(le, caminho_encoder)
         print(f"Label encoder salvo em: {caminho_encoder}")
+
+        caminho_feature = os.path.join(pasta_modelo, 'features.pkl')
+        features = list(df.drop(columns=["doencas"]))  
+        joblib.dump(features, caminho_feature)
+        print(f"Features salvas em: {caminho_feature}")
 
     return model, le, scaler, history
 
