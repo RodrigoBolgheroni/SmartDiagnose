@@ -1,0 +1,100 @@
+/* Layout base */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #6C63FF, #42A5F5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Header fixo no topo */
+.header {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 15px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 36px;
+    height: 36px;
+}
+
+.titulo {
+    font-size: 22px;
+    color: #333;
+    margin: 0;
+}
+
+/* Cartão de login */
+.login-card {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin-top: 120px; /* espaçamento para o header */
+}
+
+.login-card input[type="text"],
+.login-card input[type="password"],
+.login-card input[type="email"]{
+    width: 80%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.login-card button {
+    width: 100%;
+    padding: 14px;
+    background-color: #6C63FF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-card button:hover {
+    background-color: #574fd6;
+}
+
+.cadastro-link {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.cadastro-link a {
+    color: #6C63FF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cadastro-link a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #aaa;
+}
